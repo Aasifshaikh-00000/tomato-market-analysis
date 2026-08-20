@@ -1,0 +1,615 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Market Price Trend Analysis - Agriculture Produce - Maharashtra 2025-2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg-primary:#FFFFFF;--bg-card:#F4F4F5;--bg-section-alt:#FAFAFA;
+  --accent-red:#E63946;--accent-blue:#1D4ED8;--accent-green:#16A34A;
+  --text-primary:#09090B;--text-muted:#71717A;--border:#E4E4E7;
+  --font-serif:"Playfair Display",Georgia,serif;
+  --font-mono:"JetBrains Mono",monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Inter",sans-serif;background:var(--bg-primary);color:var(--text-primary);font-size:1rem;line-height:1.7;-webkit-font-smoothing:antialiased}
+.container{max-width:1100px;margin:0 auto;padding:0 40px}
+.label{font-size:.75rem;font-weight:500;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em}
+.label--red{color:var(--accent-red)}
+.section-title{font-size:2.2rem;font-weight:700;color:var(--text-primary);line-height:1.15}
+.section-subtitle{font-size:1rem;color:var(--text-muted);margin-top:10px}
+.body-text{font-size:.97rem;color:var(--text-muted);line-height:1.8}
+/* ── ANIMATIONS ── */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.stagger>*{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
+.stagger.visible>*:nth-child(1){opacity:1;transform:translateY(0);transition-delay:.0s}
+.stagger.visible>*:nth-child(2){opacity:1;transform:translateY(0);transition-delay:.1s}
+.stagger.visible>*:nth-child(3){opacity:1;transform:translateY(0);transition-delay:.2s}
+.stagger.visible>*:nth-child(4){opacity:1;transform:translateY(0);transition-delay:.3s}
+.stagger.visible>*:nth-child(5){opacity:1;transform:translateY(0);transition-delay:.4s}
+.stagger.visible>*:nth-child(6){opacity:1;transform:translateY(0);transition-delay:.5s}
+/* ── TICKER ── */
+.ticker-bar{position:fixed;top:0;left:0;right:0;height:32px;background:#F4F4F5;border-bottom:1px solid var(--border);z-index:1001;overflow:hidden;display:flex;align-items:center}
+.ticker-track{display:flex;align-items:center;gap:0;white-space:nowrap;animation:ticker-scroll 32s linear infinite}
+.ticker-item{display:inline-flex;align-items:center;gap:8px;padding:0 28px;font-family:var(--font-mono);font-size:.68rem;font-weight:500;color:var(--text-muted);border-right:1px solid var(--border)}
+.ticker-item .t-name{color:var(--text-primary);font-weight:600}
+.ticker-item .t-up{color:var(--accent-green)}
+.ticker-item .t-down{color:var(--accent-red)}
+@keyframes ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;height:56px;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);z-index:1000;display:flex;align-items:center}
+.nav-inner{width:100%;max-width:1100px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;flex-direction:column;gap:1px}
+.nav-brand-main{font-size:.9rem;font-weight:700;color:var(--text-primary);letter-spacing:-.01em}
+.nav-brand-sub{font-family:var(--font-mono);font-size:.62rem;font-weight:400;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em}
+.nav-pills{display:flex;gap:2px;list-style:none}
+.nav-pills li a{display:block;padding:6px 16px;border-radius:6px;font-size:.78rem;font-weight:500;color:var(--text-muted);text-decoration:none;border:1px solid transparent;transition:color .2s,background .2s,border-color .2s;letter-spacing:.01em}
+.nav-pills li a:hover{color:var(--text-primary);background:#F4F4F5}
+.nav-pills li a.active{color:var(--text-primary);border-color:var(--border);background:#F4F4F5}
+/* ── HERO ── */
+#overview{min-height:100vh;display:flex;align-items:center;background:var(--bg-primary);padding:0;position:relative;overflow:hidden;padding-top:56px}
+.hero-grid-bg{position:absolute;inset:0;background-image:radial-gradient(circle,#E4E4E7 1px,transparent 1px);background-size:28px 28px;opacity:.55;pointer-events:none;z-index:0}
+.hero-grid-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,rgba(255,255,255,.0) 60%,rgba(255,255,255,1) 100%),linear-gradient(to bottom,rgba(255,255,255,.6) 0%,transparent 20%,transparent 80%,rgba(255,255,255,.6) 100%)}
+.hero-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;width:100%;min-height:calc(100vh - 56px);padding-top:60px;padding-bottom:60px}
+.hero-left{}
+.hero-project-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px}
+.hero-project-badge .badge-bar{width:3px;height:32px;background:var(--accent-red);border-radius:2px;flex-shrink:0}
+.hero-project-badge .badge-text{font-family:var(--font-mono);font-size:.68rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;line-height:1.5}
+.hero-title{font-family:var(--font-serif);font-size:clamp(2.8rem,5vw,4.2rem);font-weight:800;letter-spacing:-.025em;line-height:1.08;color:var(--text-primary);margin-bottom:6px}
+.hero-title-accent{color:var(--accent-red)}
+.hero-rule{width:48px;height:2px;background:var(--accent-red);margin:24px 0}
+.hero-sub{font-size:1rem;color:var(--text-muted);max-width:480px;line-height:1.8;margin-bottom:40px}
+.hero-sub strong{color:var(--text-primary);font-weight:600}
+.stat-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:0}
+.stat-pill{padding:9px 18px;border:1px solid var(--border);border-radius:6px;font-family:var(--font-mono);font-size:.78rem;font-weight:500;color:var(--text-primary);background:#FAFAFA;transition:border-color .2s}
+.stat-pill:hover{border-color:#A1A1AA}
+.hero-right{position:relative;height:480px}
+.hero-chart-canvas{width:100%;height:100%;position:relative}
+.hero-chart-canvas svg{width:100%;height:100%;overflow:visible}
+.chart-line-path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.price-label-float{position:absolute;font-family:var(--font-mono);font-size:.65rem;font-weight:600;padding:3px 8px;border-radius:4px;border:1px solid var(--border);background:#fff;color:var(--text-muted);animation:label-float 3s ease-in-out infinite alternate}
+.price-label-float.red{color:var(--accent-red);border-color:rgba(230,57,70,.25);background:rgba(230,57,70,.04)}
+@keyframes label-float{0%{transform:translateY(0)}100%{transform:translateY(-8px)}}
+.hero-axis-label{position:absolute;bottom:12px;font-family:var(--font-mono);font-size:.62rem;color:var(--border);text-transform:uppercase;letter-spacing:.06em}
+.scroll-indicator{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2}
+.scroll-indicator span{font-family:var(--font-mono);font-size:.62rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--border),transparent);animation:scroll-line-anim 1.6s ease-in-out infinite}
+@keyframes scroll-line-anim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+/* ── SECTIONS ── */
+.section{padding:120px 0}
+.section--alt{background:var(--bg-section-alt)}
+.section--primary{background:var(--bg-primary)}
+.section-header{margin-bottom:64px}
+.section-header-inner{display:flex;align-items:flex-start;gap:20px}
+.section-num{font-family:"Inter",sans-serif;font-size:5rem;font-weight:800;color:var(--border);line-height:1;flex-shrink:0;margin-top:-8px;user-select:none}
+.section-header-text{}
+.section-eyebrow{font-family:var(--font-mono);font-size:.68rem;font-weight:600;color:var(--accent-red);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+/* ── PROBLEM ── */
+.problem-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.problem-title{font-size:clamp(2rem,3.5vw,2.8rem);font-weight:700;letter-spacing:-.02em;line-height:1.12;margin:12px 0 20px;color:var(--text-primary)}
+.stat-cards-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.stat-card{background:var(--bg-primary);border:1px solid var(--border);border-radius:10px;padding:22px;position:relative;overflow:hidden}
+.stat-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent-red)}
+.stat-card .stat-number{font-family:var(--font-mono);font-size:1.9rem;font-weight:700;color:var(--accent-red);font-variant-numeric:tabular-nums;line-height:1;margin-bottom:8px}
+.stat-card .stat-label{font-size:.8rem;color:var(--text-muted);line-height:1.4}
+/* ── CHARTS ── */
+.chart-wrap{background:var(--bg-primary);border:1px solid var(--border);border-radius:12px;padding:24px;transition:border-color .2s,box-shadow .2s;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.chart-wrap:hover{border-color:#A1A1AA;box-shadow:0 4px 20px rgba(0,0,0,.10)}
+.chart-wrap img{width:100%;border-radius:6px;border:none;display:block;cursor:zoom-in;transition:opacity .2s}
+.chart-wrap img:hover{opacity:.9}
+.chart-caption{margin-top:12px;font-family:var(--font-mono);font-size:.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;line-height:1.5}
+/* ── INTERVENTIONS ── */
+.interventions-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.intervention-card{background:var(--bg-primary);border:1px solid var(--border);border-radius:10px;padding:28px;transition:border-color .2s}
+.intervention-card:hover{border-color:#A1A1AA}
+.intervention-tag{display:inline-block;font-family:var(--font-mono);font-size:.65rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.09em;border:1px solid var(--border);border-radius:3px;padding:3px 8px;margin-bottom:14px}
+.intervention-card h3{font-size:1.05rem;font-weight:700;margin-bottom:10px;color:var(--text-primary)}
+.intervention-meta{font-size:.85rem;color:var(--text-muted);line-height:1.65;margin-bottom:3px}
+.intervention-meta strong{color:var(--text-primary);font-weight:600}
+.intervention-gap{margin-top:14px;font-family:var(--font-mono);font-size:.78rem;color:var(--accent-red);line-height:1.5}
+.callout-box{border-left:3px solid var(--accent-red);background:rgba(230,57,70,.04);border-radius:0 8px 8px 0;padding:22px 26px;font-size:.95rem;color:var(--text-muted);line-height:1.8}
+.callout-box strong{color:var(--text-primary)}
+/* ── DATA ── */
+.data-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:64px;align-items:start}
+.data-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.data-table td{padding:14px 0;border-bottom:1px solid var(--border);vertical-align:top}
+.data-table td:first-child{font-family:var(--font-mono);font-size:.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;width:38%;padding-right:16px;padding-top:16px}
+.data-table td:last-child{color:var(--text-primary);font-weight:600}
+.market-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.market-item{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:var(--bg-primary);border:1px solid var(--border);border-radius:8px;transition:border-color .2s}
+.market-item:hover{border-color:#A1A1AA}
+.market-dot{font-size:.85rem;line-height:1.6;flex-shrink:0}
+.market-info{flex:1}
+.market-name{font-size:.88rem;font-weight:600;color:var(--text-primary);line-height:1.3}
+.market-sub{font-family:var(--font-mono);font-size:.68rem;color:var(--text-muted)}
+.market-role{display:inline-block;font-family:var(--font-mono);font-size:.62rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;border:1px solid var(--border);border-radius:3px;padding:2px 6px;margin-top:5px}
+/* ── FINDINGS ── */
+.finding-block{display:grid;grid-template-columns:1.15fr 0.85fr;gap:56px;align-items:center;padding:80px 0;border-bottom:1px solid var(--border);position:relative}
+.finding-block:last-child{border-bottom:none}
+.finding-block.reverse{direction:rtl}
+.finding-block.reverse>*{direction:ltr}
+.finding-label{font-family:var(--font-mono);font-size:.7rem;font-weight:600;color:var(--accent-red);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.finding-headline{font-size:clamp(1.5rem,2.5vw,2rem);font-weight:700;letter-spacing:-.02em;line-height:1.15;color:var(--text-primary);margin-bottom:18px}
+/* ── SIGNAL ── */
+#signal{background:var(--bg-section-alt)}
+.signal-header{text-align:center;max-width:700px;margin:0 auto 56px}
+.signal-title{font-size:clamp(2rem,4vw,2.8rem);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin:14px 0 20px}
+.signal-body{font-size:.97rem;color:var(--text-muted);line-height:1.8}
+.signal-box{background:var(--bg-primary);border:1px solid var(--accent-red);border-radius:10px;padding:40px;max-width:700px;margin:0 auto 48px;position:relative;overflow:hidden}
+.signal-box::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent-red)}
+.signal-box-label{font-family:var(--font-mono);font-size:.7rem;font-weight:600;color:var(--accent-red);text-transform:uppercase;letter-spacing:.1em;margin-bottom:18px}
+.signal-box-text{font-size:1.05rem;color:var(--text-primary);line-height:1.85;margin-bottom:32px;font-weight:500}
+.signal-data-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;border-top:1px solid var(--border);padding-top:28px}
+.signal-data-number{font-family:var(--font-mono);font-size:1.8rem;font-weight:700;color:var(--text-primary);line-height:1.1;margin-bottom:6px}
+.signal-data-desc{font-size:.78rem;color:var(--text-muted);line-height:1.45}
+.action-table-wrap{margin-bottom:40px}
+.action-table-title{font-family:var(--font-mono);font-size:.7rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.09em;margin-bottom:14px}
+.action-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.action-table th{text-align:left;padding:11px 16px;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:.68rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em}
+.action-table td{padding:15px 16px;border-bottom:1px solid var(--border);color:var(--text-primary);vertical-align:top;line-height:1.5}
+.action-table tr:last-child td{border-bottom:none}
+.action-table td:nth-child(2){color:var(--text-muted);font-size:.83rem}
+.action-table td:nth-child(3){color:var(--text-muted);font-size:.83rem;font-family:var(--font-mono)}
+.action-table tbody tr:hover td{background:rgba(0,0,0,.02)}
+.signal-footnote{text-align:center;font-size:.875rem;color:var(--text-muted);font-style:italic}
+/* ── METHODOLOGY ── */
+.method-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-bottom:56px}
+.method-steps{list-style:none;counter-reset:step-counter;display:flex;flex-direction:column;gap:22px}
+.method-steps li{counter-increment:step-counter;display:flex;gap:16px;align-items:flex-start}
+.method-steps li::before{content:counter(step-counter,decimal-leading-zero);font-family:var(--font-mono);font-size:.72rem;font-weight:700;color:var(--accent-red);min-width:28px;margin-top:3px;flex-shrink:0}
+.method-steps li p{font-size:.9rem;color:var(--text-muted);line-height:1.7}
+.method-tools h4{font-family:var(--font-mono);font-size:.7rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.09em;margin-bottom:18px}
+.tool-badges{display:flex;flex-wrap:wrap;gap:8px}
+.tool-badge{display:inline-block;padding:7px 13px;background:var(--bg-primary);border:1px solid var(--border);border-radius:6px;font-family:var(--font-mono);font-size:.75rem;color:var(--text-primary);font-weight:500;transition:border-color .2s}
+.tool-badge:hover{border-color:#A1A1AA}
+.github-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border:1px solid var(--accent-red);border-radius:6px;font-size:.88rem;font-weight:600;color:var(--accent-red);text-decoration:none;transition:background .2s,color .2s;letter-spacing:.01em}
+.github-btn:hover{background:var(--accent-red);color:#fff}
+/* ── FOOTER ── */
+footer{background:var(--bg-section-alt);border-top:1px solid var(--border);padding:28px 0}
+.footer-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;max-width:1100px;margin:0 auto;padding:0 40px}
+.footer-inner span{font-family:var(--font-mono);font-size:.7rem;color:var(--text-muted)}
+.footer-inner span:nth-child(2){text-align:center}
+.footer-inner span:nth-child(3){text-align:right}
+/* ── LIGHTBOX ── */
+#lightbox{display:none;position:fixed;inset:0;background:rgba(9,9,11,.94);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out}
+#lightbox.open{display:flex}
+#lightbox img{max-width:92vw;max-height:90vh;border-radius:8px;border:1px solid #27272A;object-fit:contain}
+#lightbox-close{position:fixed;top:20px;right:28px;font-size:1.4rem;color:#A1A1AA;cursor:pointer;background:none;border:none;line-height:1;transition:color .2s;font-family:var(--font-mono)}
+#lightbox-close:hover{color:#FFFFFF}
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .hero-inner{grid-template-columns:1fr;gap:48px}
+  .hero-right{height:300px}
+  .problem-layout,.data-layout,.method-layout,.interventions-grid{grid-template-columns:1fr;gap:36px}
+  .finding-block{grid-template-columns:1fr;gap:28px}
+  .finding-block.reverse{direction:ltr}
+  .stat-cards-row{grid-template-columns:1fr}
+  .signal-data-row{grid-template-columns:1fr;gap:18px}
+  .footer-inner{grid-template-columns:1fr;gap:10px}
+  .footer-inner span:nth-child(2),.footer-inner span:nth-child(3){text-align:left}
+  .section-num{font-size:3.5rem}
+}
+@media(max-width:600px){
+  .container{padding:0 20px}
+  .nav-inner{padding:0 20px}
+  .hero-inner{padding:0 20px;padding-top:48px;padding-bottom:48px}
+  .section{padding:80px 0}
+  .hero-title{font-size:2.4rem}
+  .stat-pills{flex-direction:column}
+  .nav-pills li a{padding:5px 10px;font-size:.73rem}
+  .action-table{font-size:.78rem}
+  .action-table td,.action-table th{padding:10px 8px}
+  .nav-brand-sub{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div id="lightbox"><button id="lightbox-close">&#x2715;</button><img id="lightbox-img" src="" alt=""/></div>
+
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <span class="nav-brand-main">Tomato Market Analysis</span>
+      <span class="nav-brand-sub">Agriculture Produce &middot; Maharashtra &middot; 2025&ndash;2026</span>
+    </div>
+    <ul class="nav-pills">
+      <li><a href="#overview" class="nav-link">Overview</a></li>
+      <li><a href="#findings" class="nav-link">Findings</a></li>
+      <li><a href="#signal"   class="nav-link">Signal</a></li>
+      <li><a href="#method"   class="nav-link">Method</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- S1: HERO -->
+<section id="overview">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-inner">
+    <!-- LEFT -->
+    <div class="hero-left">
+      <div class="hero-project-badge fade-up">
+        <div class="badge-bar"></div>
+        <div class="badge-text">Market Price Trend Analysis<br>of Agriculture Produce</div>
+      </div>
+      <h1 class="hero-title fade-up">Tomato Prices<br>Crash<br><span class="hero-title-accent">Every Cycle.</span></h1>
+      <div class="hero-rule fade-up"></div>
+      <p class="hero-sub fade-up">India&#x27;s government has <strong>four systems</strong> to prevent it.<br>All of them activate after the crash has already happened.<br>This study shows where to look &mdash; <strong>60 days earlier.</strong></p>
+      <div class="stat-pills stagger">
+        <span class="stat-pill">3,093 Records</span>
+        <span class="stat-pill">6 APMC Markets</span>
+        <span class="stat-pill">20 Months</span>
+      </div>
+    </div>
+    <!-- RIGHT: Animated Price Chart -->
+    <div class="hero-right fade-up">
+      <div class="hero-chart-canvas">
+        <svg id="hero-svg" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <style>
+              .anim-path{stroke-dasharray:2000;stroke-dashoffset:2000;animation:draw-line 3s cubic-bezier(.4,0,.2,1) forwards}
+              .anim-path.d1{animation-delay:.2s}
+              .anim-path.d2{animation-delay:.6s}
+              .anim-path.d3{animation-delay:1s}
+              .anim-path.d4{animation-delay:1.4s}
+              @keyframes draw-line{to{stroke-dashoffset:0}}
+              .dot-pulse{animation:dot-pulse 2s ease-in-out infinite}
+              @keyframes dot-pulse{0%,100%{r:4;opacity:1}50%{r:6;opacity:.6}}
+            </style>
+          </defs>
+          <!-- dot grid -->
+          <pattern id="dotgrid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="#E4E4E7"/></pattern>
+          <rect width="500" height="400" fill="url(#dotgrid)"/>
+          <!-- axes -->
+          <line x1="40" y1="20" x2="40" y2="360" stroke="#E4E4E7" stroke-width="1"/>
+          <line x1="40" y1="360" x2="490" y2="360" stroke="#E4E4E7" stroke-width="1"/>
+          <text x="34" y="60" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="8" fill="#A1A1AA">10,500</text>
+          <text x="34" y="160" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="8" fill="#A1A1AA">5,000</text>
+          <text x="34" y="260" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="8" fill="#A1A1AA">2,000</text>
+          <text x="34" y="354" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="8" fill="#A1A1AA">200</text>
+          <line x1="40" y1="60" x2="490" y2="60" stroke="#F4F4F5" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="40" y1="160" x2="490" y2="160" stroke="#F4F4F5" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="40" y1="260" x2="490" y2="260" stroke="#F4F4F5" stroke-width="1" stroke-dasharray="4,4"/>
+          <text x="60" y="376" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#A1A1AA">Jan</text>
+          <text x="134" y="376" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#A1A1AA">Apr</text>
+          <text x="208" y="376" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#A1A1AA">Jul</text>
+          <text x="282" y="376" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#A1A1AA">Oct</text>
+          <text x="356" y="376" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#A1A1AA">Jan</text>
+          <text x="430" y="376" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#A1A1AA">Apr</text>
+          <text x="14" y="200" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#A1A1AA" transform="rotate(-90,14,200)">&#8377; / Quintal</text>
+          <!-- Pimpalgaon line (red) -->
+          <path class="anim-path d1" d="M60,310 L85,280 L110,240 L130,150 L150,60 L170,120 L190,200 L210,280 L230,310 L255,320 L275,340 L295,320 L315,300 L335,260 L355,200 L375,250 L395,280 L415,310 L440,340 L465,330" stroke="#E63946" stroke-width="2.5" fill="none" opacity=".95" class="chart-line-path"/>
+          <!-- Nagpur line (grey) -->
+          <path class="anim-path d2" d="M60,290 L90,270 L115,230 L135,170 L155,100 L175,140 L195,210 L215,265 L240,290 L265,305 L285,315 L305,295 L325,275 L345,245 L365,210 L385,235 L410,265 L435,295 L460,310" stroke="#A1A1AA" stroke-width="1.8" fill="none" opacity=".7" class="chart-line-path"/>
+          <!-- Mumbai line (light blue-grey) -->
+          <path class="anim-path d3" d="M60,300 L90,285 L115,255 L135,195 L158,130 L178,165 L198,220 L218,272 L243,296 L267,308 L288,318 L308,300 L328,282 L350,254 L370,220 L390,244 L415,272 L440,300 L465,318" stroke="#1D4ED8" stroke-width="1.5" fill="none" opacity=".35" class="chart-line-path"/>
+          <!-- Area fill Pimpalgaon -->
+          <path class="anim-path d1" d="M60,310 L85,280 L110,240 L130,150 L150,60 L170,120 L190,200 L210,280 L230,310 L255,320 L275,340 L295,320 L315,300 L335,260 L355,200 L375,250 L395,280 L415,310 L440,340 L465,330 L465,360 L60,360 Z" stroke="none" fill="#E63946" opacity=".04"/>
+          <!-- spike marker -->
+          <line x1="150" y1="60" x2="150" y2="360" stroke="#E63946" stroke-width="1" stroke-dasharray="3,3" opacity=".3"/>
+          <text x="155" y="55" font-family="JetBrains Mono,monospace" font-size="7" fill="#E63946" opacity=".9">&#8377;10,500 Peak</text>
+          <circle cx="465" cy="330" r="4" fill="#E63946" class="dot-pulse"/>
+          <circle cx="460" cy="310" r="3" fill="#A1A1AA" class="dot-pulse" style="animation-delay:.5s"/>
+          <rect x="44" y="22" width="8" height="8" rx="2" fill="#E63946"/>
+          <text x="56" y="30" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#71717A">Pimpalgaon</text>
+          <rect x="120" y="22" width="8" height="8" rx="2" fill="#A1A1AA"/>
+          <text x="132" y="30" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#71717A">Nagpur</text>
+          <rect x="180" y="22" width="8" height="8" rx="2" fill="#1D4ED8" opacity=".5"/>
+          <text x="192" y="30" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#71717A">Mumbai</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- S2: THE PROBLEM -->
+<section id="problem" class="section section--alt">
+  <div class="container">
+    <div class="problem-layout">
+      <div class="fade-up">
+        <div class="section-header-inner">
+          <div class="section-num">01</div>
+          <div class="section-header-text">
+            <div class="section-eyebrow"><h1>The Problem</h1></div>
+            <h2 class="problem-title">A 52&times; Price Swing<br>in 20 Months.</h2>
+          </div>
+        </div>
+        <p class="body-text" style="margin-top:24px">Tomato modal prices in Maharashtra ranged from &#8377;200 to &#8377;10,500 per quintal between January 2025 and August 2026. This is not random volatility &mdash; it is a predictable cycle that repeats every year, in the same months, at the same markets. Farmers cannot plan. Traders cannot hedge. Consumers cannot budget.</p>
+        <div class="stat-cards-row stagger">
+          <div class="stat-card"><div class="stat-number" data-target="200" data-prefix="&#8377;">&#8377;200</div><div class="stat-label">Lowest recorded price</div></div>
+          <div class="stat-card"><div class="stat-number" data-target="10500" data-prefix="&#8377;">&#8377;10,500</div><div class="stat-label">Highest recorded price</div></div>
+          <div class="stat-card"><div class="stat-number" data-target="1677" data-prefix="&#8377;">&#8377;1,677</div><div class="stat-label">20-month average</div></div>
+        </div>
+      </div>
+      <div class="chart-wrap fade-up" style="margin-top: 130px;width: 120%; margin-left: -2%;">
+        <img src="../charts/01_price_trend_all_markets.png" alt="Events and anomaly timeline" loading="lazy"/>
+        <p class="chart-caption">Daily modal prices &mdash; all 6 markets &mdash; annotated price events and &plusmn;2&sigma; volatility band</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S3: INTERVENTIONS -->
+<section id="interventions" class="section section--primary">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-header-inner">
+        <div class="section-num">02</div>
+        <div class="section-header-text">
+          <div class="section-eyebrow"><h1>Existing Interventions</h1></div>
+          <h2 class="section-title">Four Systems.<br>All Reactive.</h2>
+        </div>
+      </div>
+    </div>
+    <div class="interventions-grid stagger">
+      <div class="intervention-card"><span class="intervention-tag">Consumer Protection</span><h3>PSF &mdash; Price Stabilisation Fund</h3><p class="intervention-meta"><strong>When it acts:</strong> After spike is visible in retail</p><p class="intervention-meta">Buys from surplus states, sells at &#8377;35&ndash;45/kg via mobile vans when open market crosses &#8377;100/kg.</p><p class="intervention-gap">&#x2192; Activates after retail prices already spiked</p></div>
+      <div class="intervention-card"><span class="intervention-tag">Farmer Protection</span><h3>MIS &mdash; Market Intervention Scheme</h3><p class="intervention-meta"><strong>When it acts:</strong> After crash has begun</p><p class="intervention-meta">Reimburses 100% transport costs to move surplus tomatoes from crashing markets to other states.</p><p class="intervention-gap">&#x2192; Farmers have already harvested and sent trucks before MIS triggers</p></div>
+      <div class="intervention-card"><span class="intervention-tag">Structural</span><h3>Operation Greens</h3><p class="intervention-meta"><strong>When it acts:</strong> Always active</p><p class="intervention-meta">50% subsidy on cold storage construction and inter-state transport to build long-term infrastructure.</p><p class="intervention-gap">&#x2192; Slow to deploy, does not prevent seasonal price swings</p></div>
+      <div class="intervention-card"><span class="intervention-tag">Technology</span><h3>Tomato Grand Challenge</h3><p class="intervention-meta"><strong>When it acts:</strong> In progress</p><p class="intervention-meta">28 funded startups building forecasting apps, better packaging, and processing units for surplus tomatoes.</p><p class="intervention-gap">&#x2192; No live monitoring trigger yet connected to existing intervention systems</p></div>
+    </div>
+    <div class="callout-box fade-up">Every intervention reacts to price signals that are already visible to consumers. By then, the sowing decisions, harvesting, and market arrivals that caused the crisis are irreversible. <strong>The problem is not the tools &mdash; it is the timing.</strong></div>
+  </div>
+</section>
+
+<!-- S4: THE STUDY -->
+<section id="data" class="section section--alt">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-header-inner">
+        <div class="section-num">03</div>
+        <div class="section-header-text">
+          <div class="section-eyebrow"><h1>The Dataset</h1></div>
+          <h2 class="section-title">The Study</h2>
+          <p class="section-subtitle">20 months of daily APMC market data &mdash; Maharashtra&#x27;s tomato supply chain, end to end</p>
+        </div>
+      </div>
+    </div>
+    <div class="data-layout">
+      <div class="fade-up">
+        <table class="data-table"><tbody>
+          <tr><td>Records</td><td>3,093 daily observations</td></tr>
+          <tr><td>Markets</td><td>6 APMC markets across 4 districts</td></tr>
+          <tr><td>Period</td><td>January 2025 &mdash; August 2026</td></tr>
+          <tr><td>Missing values</td><td>Zero</td></tr>
+          <tr><td>Source</td><td>Agmarknet (data.gov.in)</td></tr>
+        </tbody></table>
+      </div>
+      <div class="fade-up">
+        <ul class="market-list">
+          <li class="market-item"><span class="market-dot">&#128308;</span><div class="market-info"><div class="market-name">Pimpalgaon Baswant APMC</div><div class="market-sub">Nashik</div><span class="market-role">Primary Production Hub</span></div></li>
+          <li class="market-item"><span class="market-dot">&#128993;</span><div class="market-info"><div class="market-name">Nasik APMC</div><div class="market-sub">Nashik</div><span class="market-role">Secondary Production Hub</span></div></li>
+          <li class="market-item"><span class="market-dot">&#11044;</span><div class="market-info"><div class="market-name">Mumbai APMC</div><div class="market-sub">Mumbai</div><span class="market-role">Consumption Market</span></div></li>
+          <li class="market-item"><span class="market-dot">&#11044;</span><div class="market-info"><div class="market-name">Pune APMC</div><div class="market-sub">Pune</div><span class="market-role">Consumption Market</span></div></li>
+          <li class="market-item"><span class="market-dot">&#11044;</span><div class="market-info"><div class="market-name">Pune Manjri APMC</div><div class="market-sub">Pune</div><span class="market-role">Secondary Consumption</span></div></li>
+          <li class="market-item"><span class="market-dot">&#128309;</span><div class="market-info"><div class="market-name">Nagpur APMC</div><div class="market-sub">Nagpur</div><span class="market-role">Inland Distribution Hub</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S5: FINDINGS -->
+<section id="findings" class="section section--primary">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-header-inner">
+        <div class="section-num">04</div>
+        <div class="section-header-text">
+          <div class="section-eyebrow"><h1>Analysis</h1></div>
+          <h2 class="section-title">What the Data Shows</h2>
+          <p class="section-subtitle">Six findings. Each one backed by a chart.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- F1 -->
+    <div class="finding-block fade-up">
+      <div class="chart-wrap">
+        <img src="../charts/13_seasonal_decomposition.png" alt="Seasonal decomposition" loading="lazy"/>
+        <p class="chart-caption">Seasonal decomposition &mdash; trend, seasonal component, residual noise</p>
+      </div>
+      <div><div class="finding-label"><h1>Finding 01 &middot; Seasonality</h1></div><h3 class="finding-headline">The Crash Is Predictable.<br>It Has a Calendar.</h3><p class="body-text">Seasonal decomposition of 20 months of price data reveals a recurring semi-annual pattern with an amplitude of &#8377;600&ndash;900 per quintal. The price swing is not random volatility &mdash; it is a mathematical cycle tied to the Rabi and Kharif harvest calendars. The crisis looks like chaos. The data says otherwise.</p></div>
+    </div>
+
+    <!-- F2 -->
+    <div class="finding-block reverse fade-up">
+      <div class="chart-wrap">
+        <img src="../charts/08_yoy_comparison.png" alt="Year-over-year comparison" loading="lazy"/>
+        <p class="chart-caption">Year-over-year price comparison &mdash; 2025 vs 2026, monthly average</p>
+      </div>
+      <div><div class="finding-label"><h1>Finding 02 &middot; Boom-Bust Cycle</h1></div><h3 class="finding-headline">Farmers Are Trapped<br>in a Self-Defeating Cycle.</h3><p class="body-text">Jan&ndash;Apr 2026 prices crashed 30&ndash;50% compared to the same months in 2025. High 2025 prices motivated excess planting across Maharashtra and Karnataka. The bumper 2026 Rabi crop flooded markets and collapsed prices. The farmers who planted because prices were high got hurt because they planted. MIS triggered after the damage was done.</p></div>
+    </div>
+
+    <!-- F3 -->
+    <div class="finding-block fade-up">
+      <div class="chart-wrap">
+        <img src="../charts/14_regression_arrival_vs_price.png" alt="Regression arrival vs price" loading="lazy"/>
+        <p class="chart-caption">Linear regression &mdash; arrival quantity vs modal price, per market (R&sup2; shown)</p>
+      </div>
+      <div><div class="finding-label"><h1>Finding 03 &middot; Supply-Price Relationship</h1></div><h3 class="finding-headline">More Supply Does Not<br>Explain the Price.</h3><p class="body-text">Regression across all 6 markets confirms that higher arrivals push prices down &mdash; the direction is correct. But R&sup2; is below 15% across every market. Arrival quantity alone explains less than 15% of daily price movement. The remaining 85%+ is weather, transport, inter-state demand, and trader behaviour. A single upstream leading indicator outperforms a complex model on this data.</p></div>
+    </div>
+
+    <!-- F4 -->
+    <div class="finding-block reverse fade-up">
+      <div class="chart-wrap">
+        <img src="../charts/11_arrival_volume_market_share.png" alt="Arrival volume market share" loading="lazy"/>
+        <p class="chart-caption">Market share by total arrival volume &mdash; Pimpalgaon + Nasik &#x2248; 70% of state supply</p>
+      </div>
+      <div><div class="finding-label"><h1>Finding 04 &middot; Supply Concentration</h1></div><h3 class="finding-headline">One District Controls<br>the Entire State.</h3><p class="body-text">Pimpalgaon Baswant APMC handles 49% of all Maharashtra tomato arrivals. Add Nasik APMC and Nashik district accounts for ~70% of total state supply. Every market in Maharashtra &mdash; Mumbai, Pune, Nagpur &mdash; is fully dependent on trucks leaving this one district. One crop disease, one highway closure, one bad monsoon in Nashik, and every retail price in the state moves within 48 hours. This is a systemic single-point-of-failure with no early monitoring.</p></div>
+    </div>
+
+    <!-- F5 -->
+    <div class="finding-block fade-up">
+      <div class="chart-wrap">
+        <img src="../charts/10_price_range_summary.png" alt="Price range summary" loading="lazy"/>
+        <p class="chart-caption">Price range per market &mdash; min, median, mean, and max sorted by average price</p>
+      </div>
+      <div><div class="finding-label"><h1>Finding 05 &middot; Supply Chain Cost</h1></div><h3 class="finding-headline">The &#8377;1,100 Gap Is<br>the Missing Cold Chain.</h3><p class="body-text">The average price difference between Nasik (&#8377;1,084/qtl) and Nagpur (&#8377;2,188/qtl) is &#8377;1,104 per quintal. The tomato does not change. Only the distance does. This gap &mdash; transport cost, cold chain absence, middlemen margins, and market fees &mdash; is what Operation Greens&#x27; 50% transport subsidy is designed to reduce. The subsidy exists. The market awareness and real-time timing to use it do not.</p></div>
+    </div>
+
+    <!-- F6 -->
+    <div class="finding-block reverse fade-up">
+      <div class="chart-wrap">
+        <img src="../charts/07_price_volatility.png" alt="Price volatility CV" loading="lazy"/>
+        <p class="chart-caption">30-day rolling price volatility (CV%) &mdash; higher means more unpredictable prices</p>
+      </div>
+      <div><div class="finding-label"><h1>Finding 06 &middot; Market Vulnerability</h1></div><h3 class="finding-headline">Nagpur Pays the Highest<br>Price for Its Distance.</h3><p class="body-text">Nagpur is simultaneously the most expensive (&#8377;2,188 avg) and the most volatile market (CV 62%) in our dataset &mdash; despite having zero local tomato production. It absorbs every supply shock from Nashik with no local buffer. A cold wave in Nashik or a truck strike hits Nagpur before any intervention can reach it. It is the most exposed market in Maharashtra&#x27;s tomato network.</p></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- S6: THE SIGNAL -->
+<section id="signal" class="section">
+  <div class="container">
+    <div class="signal-header fade-up">
+      <div class="label label--red"><h1>The Recommendation</h1></div>
+      <h2 class="signal-title">The Government Has the Tools.<br>What&#x27;s Missing Is the Trigger.</h2>
+      <p class="signal-body">India does not need a new scheme, a new agency, or a new budget to prevent tomato price crashes. It needs a data-driven signal that fires PSF and MIS before the crisis lands in retail prices. Our analysis identifies that signal.</p>
+    </div>
+    <div class="signal-box fade-up">
+      <div class="signal-box-label"><h1>The Pimpalgaon Signal</h1></div>
+      <p class="signal-box-text">When Pimpalgaon Baswant APMC monthly arrival volumes exceed 150% of their 20-month rolling average for two or more consecutive months &mdash; a state-wide price crash will follow within 60 to 90 days.</p>
+      <div class="signal-data-row">
+        <div><div class="signal-data-number">49%</div><div class="signal-data-desc">of state supply flows through Pimpalgaon</div></div>
+        <div><div class="signal-data-number">60&ndash;90 days</div><div class="signal-data-desc">lead time before downstream crash</div></div>
+        <div><div class="signal-data-number">&#8377;0 extra</div><div class="signal-data-desc">new budget required</div></div>
+      </div>
+    </div>
+    <div class="action-table-wrap fade-up">
+      <p class="action-table-title">What existing agencies should do when the signal fires</p>
+      <table class="action-table">
+        <thead><tr><th>Action</th><th>Agency</th><th>Existing Tool</th></tr></thead>
+        <tbody>
+          <tr><td>Pre-position NCCF trucks for inter-state redistribution</td><td>NCCF / NAFED</td><td>MIS Infrastructure</td></tr>
+          <tr><td>SMS alert to Nashik farmers via PM-KISAN &mdash; reduce new planting</td><td>Ministry of Agriculture</td><td>PM-KISAN Database</td></tr>
+          <tr><td>Begin PSF procurement from Pimpalgaon before crash lands</td><td>Department of Consumer Affairs</td><td>Price Stabilisation Fund</td></tr>
+          <tr><td>Proactively trigger Operation Greens transport subsidy</td><td>MoFPI</td><td>Operation Greens Fund</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="signal-footnote fade-up">The data to run this signal is already public on Agmarknet, updated daily, free to access.</p>
+  </div>
+</section>
+
+<!-- S7: METHOD -->
+<section id="method" class="section section--primary">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-header-inner">
+        <div class="section-num">06</div>
+        <div class="section-header-text">
+          <div class="section-eyebrow"><h1>Reproducibility</h1></div>
+          <h2 class="section-title">Methodology</h2>
+          <p class="section-subtitle">Reproducible. Open source. Fully documented.</p>
+        </div>
+      </div>
+    </div>
+    <div class="method-layout">
+      <div class="fade-up">
+        <ol class="method-steps">
+          <li><p>Data sourced from Agmarknet (Government of India) &mdash; daily modal price and arrival quantity for 6 Maharashtra APMC markets, Jan 2025 &ndash; Aug 2026</p></li>
+          <li><p>Data profiling &mdash; shape, types, nulls, duplicates, date coverage per market (all clean, zero missing values)</p></li>
+          <li><p>Seasonal decomposition using statsmodels (additive model, period=6)</p></li>
+          <li><p>Linear regression using scipy.stats.linregress &mdash; arrival quantity vs modal price per market</p></li>
+          <li><p>Rolling volatility using 30-day coefficient of variation</p></li>
+          <li><p>14 visualisations generated programmatically in matplotlib and seaborn &mdash; fully reproducible</p></li>
+        </ol>
+      </div>
+      <div class="fade-up">
+        <div class="method-tools">
+          <h4>Tools Used</h4>
+          <div class="tool-badges">
+            <span class="tool-badge">Python 3.13</span><span class="tool-badge">pandas</span><span class="tool-badge">numpy</span><span class="tool-badge">matplotlib</span><span class="tool-badge">seaborn</span><span class="tool-badge">scipy</span><span class="tool-badge">statsmodels</span><span class="tool-badge">Jupyter (VS Code)</span><span class="tool-badge">Git / GitHub</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fade-up">
+      <a href="https://github.com/Aasifshaikh-00000/tomato-market-analysis" target="_blank" rel="noopener noreferrer" class="github-btn">View Full Code on GitHub &#x2192;</a>
+    </div>
+  </div>
+</section>
+
+<!-- S8: FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span>Market Price Trend Analysis of Agriculture Produce &middot; Maharashtra &middot; 2025&ndash;2026</span>
+    <span>Data: Agmarknet (data.gov.in) &middot; Government of India</span>
+    <span>Aasif &middot; BSc Data Science &middot; August 2026</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+
+/* 1. Nav offset for ticker+nav */
+document.querySelectorAll("a[href^=\"#\"]").forEach(function(a){
+  a.addEventListener("click",function(e){
+    var t=document.querySelector(a.getAttribute("href"));
+    if(t){e.preventDefault();var offset=t.getBoundingClientRect().top+window.scrollY-92;window.scrollTo({top:offset,behavior:"smooth"});}
+  });
+});
+
+/* 2. Scroll fade-up */
+var fadeEls=document.querySelectorAll(".fade-up,.stagger");
+var fadeObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add("visible");fadeObs.unobserve(e.target);}});
+},{threshold:0.1,rootMargin:"0px 0px -48px 0px"});
+fadeEls.forEach(function(el){fadeObs.observe(el);});
+
+/* 3. Active nav pill */
+var navMap={overview:"overview",problem:"overview",interventions:"overview",data:"overview",findings:"findings",signal:"signal",method:"method"};
+var navLinks=document.querySelectorAll(".nav-link");
+var cur="";
+var navObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){var mapped=navMap[e.target.id]||e.target.id;if(mapped!==cur){cur=mapped;navLinks.forEach(function(a){a.classList.toggle("active",a.getAttribute("href").replace("#","")===mapped);});}}
+  });
+},{threshold:0.25});
+document.querySelectorAll("section[id]").forEach(function(s){navObs.observe(s);});
+
+/* 4. Stat counter */
+var countersStarted=false;
+function fmt(n,pfx){return pfx+n.toLocaleString("en-IN");}
+function animCounter(el){
+  var target=parseInt(el.dataset.target,10);var pfx=el.dataset.prefix||"";var dur=1400;var t0=performance.now();
+  (function step(now){var p=Math.min((now-t0)/dur,1);var ease=1-Math.pow(1-p,3);el.textContent=fmt(Math.round(ease*target),pfx);if(p<1)requestAnimationFrame(step);})(performance.now());
+}
+var prob=document.getElementById("problem");
+if(prob){new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting&&!countersStarted){countersStarted=true;document.querySelectorAll(".stat-number[data-target]").forEach(animCounter);}});},{threshold:0.4}).observe(prob);}
+
+/* 5. Lightbox */
+var lb=document.getElementById("lightbox"),lbImg=document.getElementById("lightbox-img"),lbClose=document.getElementById("lightbox-close");
+function openLB(src,alt){lbImg.src=src;lbImg.alt=alt||"";lb.classList.add("open");document.body.style.overflow="hidden";}
+function closeLB(){lb.classList.remove("open");document.body.style.overflow="";lbImg.src="";}
+document.querySelectorAll(".chart-wrap img").forEach(function(img){img.addEventListener("click",function(){openLB(img.src,img.alt);});});
+lb.addEventListener("click",function(e){if(e.target===lb)closeLB();});
+lbClose.addEventListener("click",closeLB);
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeLB();});
+
+/* 6. Hero SVG re-animate on load */
+document.querySelectorAll(".anim-path").forEach(function(p){
+  p.style.strokeDasharray="2000";
+  p.style.strokeDashoffset="2000";
+});
+
+})();
+</script>
+</body>
+</html>
+
