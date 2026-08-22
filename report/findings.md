@@ -162,6 +162,12 @@ The 2026 period looks higher because 2025 was an unusually
 depressed year. The year-over-year narrative requires this context.
 
 ---
+> Note: A 2-day recording of ₹10,500 exists at Pune APMC
+> (Jan 28-29, 2025) with normal arrival volumes on both days.
+> This appears to be a data entry anomaly and is excluded
+> from headline price range figures. The 99th percentile
+> sustained maximum is ₹4,750.
+---
 
 ## 4. The Recommendation
 
