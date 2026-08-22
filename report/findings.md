@@ -46,104 +46,169 @@ infrastructure to act on it before the crisis lands.
 
 ---
 
-## 2. What Existing Systems Do (And Where They Stop)
+## 2. What We Analysed — Market Profiles
 
-| System | What It Does | When It Acts | The Gap |
-|--------|-------------|-------------|---------|
-| PSF (Price Stabilisation Fund) | Buys from surplus states, sells at ₹35–45/kg to consumers | After spike is visible | Reactive |
-| MIS (Market Intervention Scheme) | Reimburses 100% transport to move surplus out of crashing markets | After crash has begun | Reactive |
-| Operation Greens | 50% subsidy on cold storage and transport infrastructure | Always active | Structural but slow |
-| Tomato Grand Challenge | Funds 28 startups for forecasting apps and processing | In progress | No live trigger yet |
+| Market | Role | Avg Price | CV% |
+|--------|------|-----------|-----|
+| Nagpur APMC | Distribution Hub | ₹2,188 | 61.9% |
+| Mumbai APMC | Consumption | ₹2,006 | 46.9% |
+| Pune Manjri APMC | Secondary Consumption | ₹1,918 | 46.5% |
+| Pimpalgaon APMC | Primary Production Hub | ₹1,468 | 66.0% |
+| Pune APMC | Consumption | ₹1,446 | 56.5% |
+| Nasik APMC | Secondary Production Hub | ₹1,084 | 53.9% |
 
-**The gap:** Every system waits for the crisis to show up in retail prices 
-before activating. By then farmers have already made irreversible decisions —
-they have planted, harvested, and sent trucks to market.
-The damage is done before the intervention begins.
-
----
-
-## 3. Key Findings From Our Data
-
-### Finding 1 — The Swing Is Predictable, Not Random
-**Evidence: Chart 04 (Seasonality) + Chart 13 (Decomposition)**
-
-Price ranged from ₹200 to ₹10,500/quintal across 20 months — a 52x spread.
-This looks like chaos but our seasonal decomposition proves it is not.
-A recurring semi-annual pattern with an amplitude of ₹600–900/quintal
-appears consistently — independent of weather or policy.
-The swing is violent but it has a calendar.
-**You can see it coming.**
-
-### Finding 2 — Farmers Are Trapped in a Self-Defeating Cycle
-**Evidence: Chart 08 (Year-over-Year Comparison)**
-
-Jan–Apr 2026 prices crashed 30–50% versus the same months in 2025.
-The reason: high 2025 prices motivated excess planting across Maharashtra
-and Karnataka. That bumper Rabi 2026 crop hit markets simultaneously
-and collapsed prices. The farmers who planted because prices were high
-got hurt because they planted.
-MIS was triggered after the crash. It could not undo sowing decisions
-made three months earlier.
-
-### Finding 3 — Arrival Quantity Alone Explains Almost Nothing
-**Evidence: Chart 06 (Scatter) + Regression R²**
-
-Linear regression across all 6 markets shows a statistically significant
-negative relationship between arrivals and price (p < 0.05) —
-more supply does push prices down. But R² is low across every market.
-Arrival quantity alone explains only 5–15% of daily price movement.
-The remaining 85–95% is weather, transport availability, inter-state
-demand, and trader behaviour.
-This is why blanket forecasting apps struggle — and why a 
-**single-market leading indicator** is more valuable than a complex model.
-
-### Finding 4 — One District Controls the Entire State
-**Evidence: Chart 11 (Market Share)**
-
-Pimpalgaon APMC alone handles 49% of all Maharashtra tomato arrivals.
-Add Nasik APMC and the Nashik district accounts for ~70% of total supply.
-Every market in the state — Mumbai, Pune, Nagpur — is dependent on 
-trucks leaving this one district.
-One crop disease, one highway closure, one bad monsoon in Nashik,
-and every retail price in Maharashtra moves within 48 hours.
-This is a systemic single-point-of-failure that no existing scheme addresses.
-
-### Finding 5 — The ₹1,100 Gap Is the Supply Chain Cost
-**Evidence: Chart 10 (Price Range) + Chart 09 (Correlation)**
-
-The average price difference between Nasik (₹1,084) and Nagpur (₹2,188)
-is ₹1,104/quintal. This is not profit — it is transport cost, 
-cold chain absence, market fees, and middlemen margins embedded in every
-quintal that crosses the state. During supply shocks this gap widens further.
-Operation Greens' 50% transport subsidy directly targets this gap —
-but uptake depends on farmers and traders applying. 
-The subsidy exists. The awareness and timing to use it does not.
-
-### Finding 6 — Nagpur Is the Most Exposed Market
-**Evidence: Chart 07 (Volatility) + Chart 03 (Heatmap)**
-
-Nagpur is simultaneously the most expensive (₹2,188 avg) and 
-most volatile market (CV 62%) despite having zero local production.
-It absorbs every supply shock from Nashik with no buffer.
-A cold wave in Nashik or a truck strike on NH-48 hits Nagpur
-before any intervention can reach it.
+> Most volatile: Pimpalgaon (CV 66%)  
+> Most stable: Pune Manjri (CV 46.5%)
+> Source: Computed from 3,093 daily records
 
 ---
 
-## 4. The Recommendation — The Pimpalgaon Signal
+## 3. Key Findings
 
-The government does not need a new scheme, a new agency, or new money.
-It needs a data-driven trigger that fires PSF and MIS 
-**before** the crisis is visible in retail prices.
+### Finding 1 — Price Range
+**Chart: 12 (events timeline) + describe() output**
 
-Our data identifies that trigger.
+- Range: ₹200 – ₹10,500/quintal across 20 months
+- Mean: ₹1,677 | Median: ₹1,400
+- Mean > Median confirms right-skewed distribution
+- 95% of trading days saw prices below ₹3,800
+- Anything above is a statistically significant outlier event
 
-**The signal:**
-> When Pimpalgaon Baswant APMC monthly arrival volumes exceed
-> 150% of their 20-month rolling average for two or more
-> consecutive months — a state-wide price crash will follow
-> within 60–90 days.
+### Finding 2 — The Within-Season Crash at Pimpalgaon
+**Chart: 05 (arrival volume) + actual monthly data**
 
+Pimpalgaon produces near-zero supply from January to July 
+(194–1,001 MT/month against a monthly average of 19,792 MT).
+When the season opens in August, the entire harvest floods 
+the market simultaneously:
+
+| Month | Arrivals | Price | Change |
+|-------|----------|-------|--------|
+| Aug 2025 | 48,629 MT | ₹3,221 | Season opens, price peaks |
+| Sep 2025 | 129,171 MT | ₹1,305 | Supply floods — 60% drop |
+| Oct 2025 | 89,645 MT | ₹1,083 | Price at season low |
+| Nov 2025 | 39,403 MT | ₹2,360 | Supply eases, price recovers |
+
+A 66% price collapse in 8 weeks — not because demand fell,
+but because 129,000 MT arrived with nowhere to go.
+Farmers have no cold storage so they all sell at once.
+This is the structural problem Operation Greens was designed to fix.
+
+### Finding 3 — Supply Predicts Price Only at One Market
+**Chart: 06 (scatter) + regression output**
+
+Linear regression between daily arrivals and modal price
+reveals a statistically significant relationship at only one market:
+
+| Market | r | R² | p-value | Significant? |
+|--------|---|-----|---------|-------------|
+| Nasik | -0.412 | 17.0% | <0.001 | ✅ Yes |
+| All others | <0.05 | <0.1% | >0.40 | ❌ No |
+
+At Nasik: every additional 1 MT of arrivals lowers the price 
+by ₹3.12 that day. This is the only market where supply data 
+has measurable predictive power. All other markets — including 
+Pimpalgaon — show near-zero correlation.
+
+This means complex city-level demand models are unlikely to 
+outperform simply watching Nasik's daily arrival counter on Agmarknet.
+
+### Finding 4 — One District, 61% of State Supply
+**Chart: 11 (market share)**
+
+Pimpalgaon (48.7%) + Nasik (12.4%) = 61.1% of all 
+Maharashtra tomato arrivals from one district — Nashik.
+Every consumption market in the state is downstream of 
+decisions made by farmers in this one geography.
+
+### Finding 5 — The ₹1,104 Supply Chain Tax
+**Chart: 10 (price range)**
+
+| Market | Avg Price |
+|--------|-----------|
+| Nasik (source) | ₹1,084 |
+| Nagpur (furthest) | ₹2,188 |
+| Gap | ₹1,104/quintal |
+
+Same tomato. 500km difference. ₹1,104 added per quintal
+in transport, middlemen, market fees, and cold chain absence.
+Operation Greens' 50% transport subsidy directly targets this gap
+but is claimed reactively — not triggered by price data.
+
+### Finding 6 — Seasonality Is Measurable
+**Chart: 04 (seasonality) + Chart 13 (decomposition)**
+
+Seasonal decomposition (additive model, period=6) separates 
+the recurring calendar-driven price cycle from the trend:
+
+- Seasonal amplitude: ₹1,194/quintal
+  (the swing caused purely by time of year, not supply or demand)
+- Price peak: June (season transition, supply gap)
+- Price trough: March (peak Rabi harvest availability)
+- Trend direction: Rising from ₹761 to ₹1,168 over 20 months
+
+### Finding 7 — 2026 Prices Were Higher Than 2025 (Same Months)
+**Chart: 08 (YoY comparison)**
+
+| Month | 2025 Avg | 2026 Avg | Change |
+|-------|----------|----------|--------|
+| January | ₹1,041 | ₹1,856 | +78% |
+| February | ₹845 | ₹1,089 | +29% |
+| March | ₹858 | ₹1,086 | +27% |
+| April | ₹930 | ₹1,280 | +38% |
+
+2025 started at historically low prices — not a normal baseline.
+The 2026 period looks higher because 2025 was an unusually 
+depressed year. The year-over-year narrative requires this context.
+
+---
+
+## 4. The Recommendation
+
+### What the Data Actually Proves
+
+1. **Nasik arrivals predict price** (R²=17%, p<0.001, slope -3.12)
+   This is the only statistically proven supply-price signal 
+   in our entire dataset. It is updated daily on Agmarknet for free.
+
+2. **The Pimpalgaon crash is visible in real-time**
+   When Sep-Oct arrivals hit 89,000-129,000 MT at Pimpalgaon,
+   prices there fall to ₹1,083-₹1,305 within the same month.
+   The signal is not predictive — it is simultaneous.
+   The problem is there is no procurement trigger attached to it.
+
+3. **The seasonal calendar is reliable**
+   June peaks, March troughs — every year, ₹1,194 amplitude.
+   Farmers selling in March vs June face a structural ₹1,194 
+   disadvantage with no intervention to compensate.
+
+### What Should Change
+
+**For Policy — Nasik as the Early Warning Lever:**
+> Monitor daily Nasik APMC arrivals on Agmarknet.
+> When Nasik monthly arrivals rise more than 50% above 
+> the prior 3-month average, Nasik prices will fall predictably
+> (R²=17%, the only proven signal in our dataset).
+> Trigger MIS procurement at Nasik then — when supply is 
+> peaking — not after downstream retail prices have already risen.
+
+**For Operation Greens — Cold Storage at Pimpalgaon:**
+> The 66% price crash at Pimpalgaon (Aug ₹3,221 → Oct ₹1,083)
+> is caused by 129,000 MT arriving with no storage buffer.
+> Operation Greens' 50% cold storage subsidy exists but uptake
+> is low. Priority allocation to Pimpalgaon cold chain 
+> would allow farmers to stagger sales across 3-4 months
+> instead of dumping simultaneously. This is proven infrastructure,
+> not a new idea — just targeted application where data shows 
+> it matters most.
+
+**What We Cannot Claim From This Data:**
+> A specific day-count lag between Pimpalgaon spikes and 
+> downstream crashes would require cross-correlation analysis 
+> across all 6 markets with time-lagged regression — 
+> beyond the scope of this 20-month dataset.
+> The monitoring framework proposed above uses only 
+> what our analysis directly proves.
 **What existing systems should do when signal fires:**
 
 | Action | Agency | Using Existing Tool |
@@ -160,23 +225,6 @@ Our data identifies that trigger.
 - It acts 60–90 days earlier than current interventions
 
 **The one thing missing is the monitoring and the will to act on the signal.**
-
----
-
-## 5. Summary Statistics
-
-| Metric | Value |
-|--------|-------|
-| Price range | ₹200 – ₹10,500/quintal |
-| Mean price | ₹1,677/quintal |
-| Median price | ₹1,300/quintal |
-| Most expensive market | Nagpur (₹2,188 avg) |
-| Cheapest market | Nasik (₹1,084 avg) |
-| Most volatile | Pimpalgaon (CV 66%) |
-| Most stable | Pune Manjri (CV 47%) |
-| Highest volume | Pimpalgaon (49% of all arrivals) |
-| Seasonal amplitude | ₹600–900/quintal per cycle |
-| YoY price change Jan–Apr | −30% to −50% (2025 → 2026) |
 
 ---
 

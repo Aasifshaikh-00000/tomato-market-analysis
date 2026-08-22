@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -57,7 +57,7 @@ nav{position:fixed;top:0;left:0;right:0;height:56px;background:rgba(255,255,255,
 .hero-grid-bg{position:absolute;inset:0;background-image:radial-gradient(circle,#E4E4E7 1px,transparent 1px);background-size:28px 28px;opacity:.55;pointer-events:none;z-index:0}
 .hero-grid-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,rgba(255,255,255,.0) 60%,rgba(255,255,255,1) 100%),linear-gradient(to bottom,rgba(255,255,255,.6) 0%,transparent 20%,transparent 80%,rgba(255,255,255,.6) 100%)}
 .hero-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;width:100%;min-height:calc(100vh - 56px);padding-top:60px;padding-bottom:60px}
-.hero-left{}
+/* .hero-left{} */
 .hero-project-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px}
 .hero-project-badge .badge-bar{width:3px;height:32px;background:var(--accent-red);border-radius:2px;flex-shrink:0}
 .hero-project-badge .badge-text{font-family:var(--font-mono);font-size:.68rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;line-height:1.5}
@@ -88,7 +88,7 @@ nav{position:fixed;top:0;left:0;right:0;height:56px;background:rgba(255,255,255,
 .section-header{margin-bottom:64px}
 .section-header-inner{display:flex;align-items:flex-start;gap:20px}
 .section-num{font-family:"Inter",sans-serif;font-size:5rem;font-weight:800;color:var(--border);line-height:1;flex-shrink:0;margin-top:-8px;user-select:none}
-.section-header-text{}
+/* .section-header-text{} */
 .section-eyebrow{font-family:var(--font-mono);font-size:.68rem;font-weight:600;color:var(--accent-red);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
 /* ── PROBLEM ── */
 .problem-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
@@ -243,7 +243,7 @@ footer{background:var(--bg-section-alt);border-top:1px solid var(--border);paddi
       </div>
       <h1 class="hero-title fade-up">Tomato Prices<br>Crash<br><span class="hero-title-accent">Every Cycle.</span></h1>
       <div class="hero-rule fade-up"></div>
-      <p class="hero-sub fade-up">India&#x27;s government has <strong>four systems</strong> to prevent it.<br>All of them activate after the crash has already happened.<br>This study shows where to look &mdash; <strong>60 days earlier.</strong></p>
+      <p class="hero-sub fade-up">India&#x27;s government has <strong>four systems</strong> to prevent it.<br>All of them activate after the crash is already visible.<br>This study identifies the one signal they should be watching &mdash;<br>and the two tools that already exist to act on it.</p>
       <div class="stat-pills stagger">
         <span class="stat-pill">3,093 Records</span>
         <span class="stat-pill">6 APMC Markets</span>
@@ -329,9 +329,9 @@ footer{background:var(--bg-section-alt);border-top:1px solid var(--border);paddi
         </div>
         <p class="body-text" style="margin-top:24px">Tomato modal prices in Maharashtra ranged from &#8377;200 to &#8377;10,500 per quintal between January 2025 and August 2026. This is not random volatility &mdash; it is a predictable cycle that repeats every year, in the same months, at the same markets. Farmers cannot plan. Traders cannot hedge. Consumers cannot budget.</p>
         <div class="stat-cards-row stagger">
+          <div class="stat-card"><div class="stat-number" data-target="1677" data-prefix="&#8377;">&#8377;1,677</div><div class="stat-label">20-month mean | Median ₹1,400</div></div>
           <div class="stat-card"><div class="stat-number" data-target="200" data-prefix="&#8377;">&#8377;200</div><div class="stat-label">Lowest recorded price</div></div>
-          <div class="stat-card"><div class="stat-number" data-target="10500" data-prefix="&#8377;">&#8377;10,500</div><div class="stat-label">Highest recorded price</div></div>
-          <div class="stat-card"><div class="stat-number" data-target="1677" data-prefix="&#8377;">&#8377;1,677</div><div class="stat-label">20-month average</div></div>
+          <div class="stat-card"><div class="stat-number" data-target="10500" data-prefix="&#8377;">&#8377;10,500</div><div class="stat-label">Highest recorded price (Pune, Jan 2025)</div></div>
         </div>
       </div>
       <div class="chart-wrap fade-up" style="margin-top: 130px;width: 120%; margin-left: -2%;">
@@ -427,10 +427,19 @@ footer{background:var(--bg-section-alt);border-top:1px solid var(--border);paddi
     <!-- F2 -->
     <div class="finding-block reverse fade-up">
       <div class="chart-wrap">
-        <img src="../charts/08_yoy_comparison.png" alt="Year-over-year comparison" loading="lazy"/>
-        <p class="chart-caption">Year-over-year price comparison &mdash; 2025 vs 2026, monthly average</p>
+        <img src="../charts/05_arrival_volume_per_market.png" alt="Monthly arrival volume per market" loading="lazy"/>
+        <p class="chart-caption">Monthly arrival volume at Pimpalgaon &mdash; near-zero Jan&ndash;Jul,<br>then 129,000 MT floods in September. Prices follow in reverse.</p>
       </div>
-      <div><div class="finding-label"><h1>Finding 02 &middot; Boom-Bust Cycle</h1></div><h3 class="finding-headline">Farmers Are Trapped<br>in a Self-Defeating Cycle.</h3><p class="body-text">Jan&ndash;Apr 2026 prices crashed 30&ndash;50% compared to the same months in 2025. High 2025 prices motivated excess planting across Maharashtra and Karnataka. The bumper 2026 Rabi crop flooded markets and collapsed prices. The farmers who planted because prices were high got hurt because they planted. MIS triggered after the damage was done.</p></div>
+      <div><div class="finding-label"><h1>Finding 02 &middot; Boom-Bust Cycle</h1></div><h3 class="finding-headline">129,000 MT in One Month.<br>No Storage. Prices Collapse.</h3><p class="body-text">Pimpalgaon APMC produces near-zero supply from January to July
+(under 1,000 MT/month against a monthly average of 19,792 MT).
+When the season opens in August, the entire harvest floods
+the market simultaneously &mdash; with no cold storage to stagger sales.
+August 2025: 48,629 MT arrives, price peaks at &#8377;3,221.
+September 2025: 129,171 MT arrives, price crashes to &#8377;1,305.
+October 2025: 89,645 MT, price falls further to &#8377;1,083.
+A 66% price collapse in 8 weeks &mdash; not from falling demand,
+but from 129,000 MT arriving with nowhere to go.
+Operation Greens funds the solution. It is not deployed here.</p></div>
     </div>
 
     <!-- F3 -->
@@ -439,16 +448,25 @@ footer{background:var(--bg-section-alt);border-top:1px solid var(--border);paddi
         <img src="../charts/14_regression_arrival_vs_price.png" alt="Regression arrival vs price" loading="lazy"/>
         <p class="chart-caption">Linear regression &mdash; arrival quantity vs modal price, per market (R&sup2; shown)</p>
       </div>
-      <div><div class="finding-label"><h1>Finding 03 &middot; Supply-Price Relationship</h1></div><h3 class="finding-headline">More Supply Does Not<br>Explain the Price.</h3><p class="body-text">Regression across all 6 markets confirms that higher arrivals push prices down &mdash; the direction is correct. But R&sup2; is below 15% across every market. Arrival quantity alone explains less than 15% of daily price movement. The remaining 85%+ is weather, transport, inter-state demand, and trader behaviour. A single upstream leading indicator outperforms a complex model on this data.</p></div>
+      <div><div class="finding-label"><h1>Finding 03 &middot; Supply-Price Relationship</h1></div><h3 class="finding-headline">One Market. One Signal.<br>Everything Else Is Noise.</h3><p class="body-text">Regression between daily arrivals and modal price across all
+6 markets reveals that only one market has a statistically
+significant relationship: Nasik APMC (R&sup2;=17%, p&lt;0.001,
+slope -&#8377;3.12 per MT). Every other market &mdash; including Pimpalgaon &mdash;
+shows R&sup2; below 1% and p-values above 0.40. Not significant.
+This means Nasik&apos;s daily arrival counter on Agmarknet is
+the only supply-side number in Maharashtra&apos;s tomato network
+that actually predicts price. A simple threshold alert on
+Nasik arrivals would outperform any complex forecasting model
+built on this dataset.</p></div>
     </div>
 
     <!-- F4 -->
     <div class="finding-block reverse fade-up">
       <div class="chart-wrap">
         <img src="../charts/11_arrival_volume_market_share.png" alt="Arrival volume market share" loading="lazy"/>
-        <p class="chart-caption">Market share by total arrival volume &mdash; Pimpalgaon + Nasik &#x2248; 70% of state supply</p>
+        <p class="chart-caption">Market share by total arrival volume &mdash; Pimpalgaon + Nasik &#x2248; 61% of state supply</p>
       </div>
-      <div><div class="finding-label"><h1>Finding 04 &middot; Supply Concentration</h1></div><h3 class="finding-headline">One District Controls<br>the Entire State.</h3><p class="body-text">Pimpalgaon Baswant APMC handles 49% of all Maharashtra tomato arrivals. Add Nasik APMC and Nashik district accounts for ~70% of total state supply. Every market in Maharashtra &mdash; Mumbai, Pune, Nagpur &mdash; is fully dependent on trucks leaving this one district. One crop disease, one highway closure, one bad monsoon in Nashik, and every retail price in the state moves within 48 hours. This is a systemic single-point-of-failure with no early monitoring.</p></div>
+      <div><div class="finding-label"><h1>Finding 04 &middot; Supply Concentration</h1></div><h3 class="finding-headline">One District Controls<br>the Entire State.</h3><p class="body-text">Pimpalgaon Baswant APMC handles 49% of all Maharashtra tomato arrivals. Add Nasik APMC and Nashik district accounts for 61.1% of total state supply. Every market in Maharashtra &mdash; Mumbai, Pune, Nagpur &mdash; is fully dependent on trucks leaving this one district. One crop disease, one highway closure, one bad monsoon in Nashik, and every retail price in the state moves within 48 hours. This is a systemic single-point-of-failure with no early monitoring.</p></div>
     </div>
 
     <!-- F5 -->
@@ -466,7 +484,29 @@ footer{background:var(--bg-section-alt);border-top:1px solid var(--border);paddi
         <img src="../charts/07_price_volatility.png" alt="Price volatility CV" loading="lazy"/>
         <p class="chart-caption">30-day rolling price volatility (CV%) &mdash; higher means more unpredictable prices</p>
       </div>
-      <div><div class="finding-label"><h1>Finding 06 &middot; Market Vulnerability</h1></div><h3 class="finding-headline">Nagpur Pays the Highest<br>Price for Its Distance.</h3><p class="body-text">Nagpur is simultaneously the most expensive (&#8377;2,188 avg) and the most volatile market (CV 62%) in our dataset &mdash; despite having zero local tomato production. It absorbs every supply shock from Nashik with no local buffer. A cold wave in Nashik or a truck strike hits Nagpur before any intervention can reach it. It is the most exposed market in Maharashtra&#x27;s tomato network.</p></div>
+      <div><div class="finding-label"><h1>Finding 06 &middot; Market Vulnerability</h1></div><h3 class="finding-headline">Most Volatile: Pimpalgaon.<br>Most Exposed: Nagpur.</h3><p class="body-text">Pimpalgaon is the most volatile market in our dataset at CV 66%
+&mdash; higher than Nagpur&apos;s 61.9% &mdash; because its prices swing
+dramatically with seasonal harvest size.
+Nagpur is the most exposed consumption market: highest average
+price (&#8377;2,188), second-highest volatility (CV 61.9%),
+and zero local production. A transport disruption on NH-48
+hits Nagpur before any intervention can reach it.
+Pune Manjri is the most stable market (CV 46.5%) &mdash;
+smaller, localised demand, less susceptible to supply shocks.</p></div>
+    </div>
+    <!-- F7 -->
+    <div class="finding-block fade-up">
+      <div class="chart-wrap">
+        <img src="../charts/08_yoy_comparison.png" alt="Year-over-year price comparison 2025 vs 2026" loading="lazy"/>
+        <p class="chart-caption">Monthly avg price 2025 vs 2026 &mdash; 2026 reads higher because<br>2025 started at a historically depressed baseline, not because<br>of unusual 2026 inflation</p>
+      </div>
+      <div><div class="finding-label"><h1>Finding 07 &middot; Year-on-Year Context</h1></div><h3 class="finding-headline">2025 Was the Low Year.<br>2026 Was the Recovery.</h3><p class="body-text">Comparing Jan&ndash;Apr 2026 to the same months in 2025 shows
+prices were 27&ndash;78% higher in 2026. This is not a price surge &mdash;
+it is because 2025 started at historically depressed levels
+(Jan 2025 all-market avg: &#8377;1,041). Without this context,
+the year-over-year chart reads as inflation. With it,
+it reads as a recovery from an unusually low base year.
+2026 prices are broadly in line with the 20-month mean of &#8377;1,677.</p></div>
     </div>
 
   </div>
@@ -481,12 +521,16 @@ footer{background:var(--bg-section-alt);border-top:1px solid var(--border);paddi
       <p class="signal-body">India does not need a new scheme, a new agency, or a new budget to prevent tomato price crashes. It needs a data-driven signal that fires PSF and MIS before the crisis lands in retail prices. Our analysis identifies that signal.</p>
     </div>
     <div class="signal-box fade-up">
-      <div class="signal-box-label"><h1>The Pimpalgaon Signal</h1></div>
-      <p class="signal-box-text">When Pimpalgaon Baswant APMC monthly arrival volumes exceed 150% of their 20-month rolling average for two or more consecutive months &mdash; a state-wide price crash will follow within 60 to 90 days.</p>
+      <div class="signal-box-label"><h1>The Nasik Signal</h1></div>
+      <p class="signal-box-text">When Nasik APMC monthly arrivals rise more than 50% above
+the prior 3-month average &mdash; Nasik prices will fall predictably.
+This is the only statistically proven supply-price signal
+in Maharashtra&apos;s tomato network (R&sup2;=17%, p&lt;0.001).
+It is updated daily on Agmarknet. It is currently unmonitored.</p>
       <div class="signal-data-row">
-        <div><div class="signal-data-number">49%</div><div class="signal-data-desc">of state supply flows through Pimpalgaon</div></div>
-        <div><div class="signal-data-number">60&ndash;90 days</div><div class="signal-data-desc">lead time before downstream crash</div></div>
-        <div><div class="signal-data-number">&#8377;0 extra</div><div class="signal-data-desc">new budget required</div></div>
+        <div><div class="signal-data-number">17%</div><div class="signal-data-desc">R&sup2; &mdash; proven predictive power at Nasik</div></div>
+        <div><div class="signal-data-number">-&#8377;3.12</div><div class="signal-data-desc">price drop per additional MT of Nasik arrivals</div></div>
+        <div><div class="signal-data-number">&#8377;0 extra</div><div class="signal-data-desc">new budget required to monitor it</div></div>
       </div>
     </div>
     <div class="action-table-wrap fade-up">
@@ -494,14 +538,16 @@ footer{background:var(--bg-section-alt);border-top:1px solid var(--border);paddi
       <table class="action-table">
         <thead><tr><th>Action</th><th>Agency</th><th>Existing Tool</th></tr></thead>
         <tbody>
-          <tr><td>Pre-position NCCF trucks for inter-state redistribution</td><td>NCCF / NAFED</td><td>MIS Infrastructure</td></tr>
-          <tr><td>SMS alert to Nashik farmers via PM-KISAN &mdash; reduce new planting</td><td>Ministry of Agriculture</td><td>PM-KISAN Database</td></tr>
-          <tr><td>Begin PSF procurement from Pimpalgaon before crash lands</td><td>Department of Consumer Affairs</td><td>Price Stabilisation Fund</td></tr>
-          <tr><td>Proactively trigger Operation Greens transport subsidy</td><td>MoFPI</td><td>Operation Greens Fund</td></tr>
+          <tr><td>Monitor Nasik daily arrivals &mdash; alert when &gt;50% above 3-month avg</td><td>Department of Consumer Affairs</td><td>Agmarknet (free, updated daily)</td></tr>
+          <tr><td>Trigger MIS procurement at Nasik when arrival alert fires</td><td>NCCF / NAFED</td><td>MIS Infrastructure</td></tr>
+          <tr><td>Priority cold storage subsidy allocation to Pimpalgaon</td><td>MoFPI</td><td>Operation Greens Fund (50% subsidy already exists)</td></tr>
+          <tr><td>SMS alert to Nashik farmers via PM-KISAN when Nasik arrivals spike</td><td>Ministry of Agriculture</td><td>PM-KISAN Database</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="signal-footnote fade-up">The data to run this signal is already public on Agmarknet, updated daily, free to access.</p>
+    <p class="signal-footnote fade-up">Nasik arrival data is public on Agmarknet, updated daily,
+and free to access. The regression is proven.
+The infrastructure exists. No new scheme is required.</p>
   </div>
 </section>
 
